@@ -1,0 +1,346 @@
+--EECS 3421 N   PROJECT II  ZEPPELIN DATA.SQL
+--NAME: CHENGXIANG GONG
+--EECS ID:q5787882
+--STUDENT NUMBER: 214321616
+
+--=====================================--
+
+--Entities
+insert into Record_company(title, address, homepage, telephone) values
+    	('Atlantic Records', 'USA','www.atlanticrecords.com', null),
+    	('Ronnie Lane Mobile Studio','Powys, Wales','www.Imsmobilestudio.com',null);
+
+insert into Album(title, title_record_company, year) values
+	('Led Zeppelin','Atlantic Records', 1969),
+	('Led Zeppelin II','Atlantic Records', 1969),
+	('Physical Graffiti','Ronnie Lane Mobile Studio', 1975);
+
+insert into Song(title, genre) values
+	-- LZ
+    	('Good Times Bad Times', 'Hard Rock'),
+	('Babe l''m Gonna Leave You', 'Folk Rock'),
+	('You SHook Me', 'Blues Rock'),
+	('Dazed and Confused', 'Hard Rock'),
+	('heartbreaker', 'Blues Rock'),
+	('white Summer', 'Raga Rock'),
+	('Moby Dick', 'Blues Rock'),
+	-- LZ II
+    	('Whole Lotta Love', 'Hard Rock'),
+	('The Lemon Song', 'Hard Rock'),
+	('Thank You', 'Rock'),
+	('Living Loving Maid', 'Hard Rock'),
+	('Ramble On', 'Folk Rock'),
+	('Bring It On Home', 'Hard Rock'),
+	-- PG
+	('The Rover', 'Hard Rock'),
+	('Kashmir', 'Hard Rock'),
+	('In the Light', 'Progressive Rock'),
+	('Ten Years Gone', 'Hard Rock'),
+	('In My Time of Dying', 'Blues Rock');
+
+insert into Musician(name, hometown) values
+    	('Robert Plant', 'Staffordshire'),
+	('Jimmy Page', 'Middlesex'),
+	('John Paul Jones', 'Kent'),
+    	('John Bonham', 'Berkshire');
+
+insert into Artist(bio, homepage, name, hometown) values
+   	 ('English singer,songwriter,and musician','robertplant.com','Robert Plant', 'Staffordshire'),
+	('English singer,songwriter,record producer','jimmyoage.com','Jimmy Page', 'Middlesex'),
+	('English musician,record producer','johnpauljones.com','John Paul Jones', 'Kent'),
+   	 ('English musician,songwriter,best known as drummer','','John Bonham', 'Berkshire');
+
+insert into Recording(song_title, album_title, record_company_title, number, studio) values
+	-- LZ
+    	('Good Times Bad Times', 'Led Zeppelin', 'Atlantic Records',1 , 'Olympic Studio'),
+	('Babe l''m Gonna Leave You', 'Led Zeppelin', 'Atlantic Records',2 , 'Olympic Studio'),
+	('You SHook Me', 'Led Zeppelin', 'Atlantic Records',3 , 'Olympic Studio'),
+	('Dazed and Confused', 'Led Zeppelin', 'Atlantic Records',4 , 'Olympic Studio'),
+	('heartbreaker', 'Led Zeppelin', 'Atlantic Records',5 , 'Olympic Studio'),
+	('white Summer', 'Led Zeppelin', 'Atlantic Records',6 , 'Olympic Studio'),
+	('Moby Dick', 'Led Zeppelin', 'Atlantic Records',7 , 'Olympic Studio'),
+	-- LZ II
+    	('Whole Lotta Love', 'Led Zeppelin II', 'Atlantic Records',1 , 'Olympic Studio'),
+	('The Lemon Song', 'Led Zeppelin II', 'Atlantic Records',2 , 'Olympic Studio'),
+	('Thank You','Led Zeppelin II', 'Atlantic Records',3 , 'Olympic Studio'),
+	('Living Loving Maid','Led Zeppelin II', 'Atlantic Records',4 , 'Olympic Studio'),
+	('Ramble On','Led Zeppelin II', 'Atlantic Records',5 , 'Olympic Studio'),
+	('Bring It On Home','Led Zeppelin II', 'Atlantic Records',6 , 'Olympic Studio'),
+	-- PG
+	('The Rover', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',1 , 'Ronnie Lane Mobile Studio'),
+	('Kashmir', 'Physical Graffiti', 'Ronnie Lane Mobile Studio' ,2 , 'Ronnie Lane Mobile Studio'),
+	('In the Light', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',3 , 'Ronnie Lane Mobile Studio'),
+	('Ten Years Gone', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',4 , 'Ronnie Lane Mobile Studio'),
+	('In My Time of Dying', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',5 , 'Ronnie Lane Mobile Studio');
+
+insert into Orchestra(name, address, size, conductor) values
+    ('Led Zeppelin', 'London, England', 4, 'Jimmy Page');
+
+insert into Instrument(instrument) values
+    ('Vovals'),
+    ('Guitar'),
+    ('Keyboard'),
+    ('Drum');
+
+insert into Chart(name) values
+    ('Canadian RPM Albums Chart'),
+    ('US Billboard 200'),
+    ('Danish Albums Chart'),
+    ('Norwegian Albums Chart');
+
+insert into Week(start_day) values
+    	('02/02/1969'),
+	('03/15/1969'),
+    	('11/22/1969'),
+	('12/07/1969'),
+    	('04/24/1975'),
+	('06/02/1975');
+
+--Relations
+insert into Charts(start_day, name, song_title, album_title, record_company_title, rank) values
+	-- LZ
+    	('02/02/1969', 'US Billboard 200', 'Good Times Bad Times', 'Led Zeppelin', 'Atlantic Records',28),
+	('02/02/1969', 'US Billboard 200', 'Babe l''m Gonna Leave You', 'Led Zeppelin', 'Atlantic Records',34),
+	('02/02/1969', 'US Billboard 200', 'You SHook Me', 'Led Zeppelin', 'Atlantic Records',80),
+	('02/02/1969', 'US Billboard 200', 'Dazed and Confused', 'Led Zeppelin', 'Atlantic Records',46),
+	('02/02/1969', 'US Billboard 200', 'heartbreaker', 'Led Zeppelin', 'Atlantic Records',59),
+	('02/02/1969', 'Danish Albums Chart', 'white Summer', 'Led Zeppelin', 'Atlantic Records',120),
+	('02/02/1969', 'Danish Albums Chart', 'Moby Dick', 'Led Zeppelin', 'Atlantic Records',230),
+	
+	('03/15/1969', 'Danish Albums Chart', 'Good Times Bad Times', 'Led Zeppelin', 'Atlantic Records',36),
+	('03/15/1969', 'Danish Albums Chart', 'Babe l''m Gonna Leave You', 'Led Zeppelin', 'Atlantic Records',78),
+	('03/15/1969', 'Danish Albums Chart', 'You SHook Me', 'Led Zeppelin', 'Atlantic Records',160),
+	('03/15/1969', 'Norwegian Albums Chart', 'Dazed and Confused', 'Led Zeppelin', 'Atlantic Records',24),
+	('03/15/1969', 'Norwegian Albums Chart', 'heartbreaker', 'Led Zeppelin', 'Atlantic Records',70),
+	('03/15/1969', 'Norwegian Albums Chart', 'white Summer', 'Led Zeppelin', 'Atlantic Records',26),
+	('03/15/1969', 'Norwegian Albums Chart', 'Moby Dick', 'Led Zeppelin', 'Atlantic Records',24),
+	-- LZ II
+    	('11/22/1969', 'US Billboard 200', 'Whole Lotta Love', 'Led Zeppelin II', 'Atlantic Records',48),
+	('11/22/1969', 'US Billboard 200', 'The Lemon Song', 'Led Zeppelin II', 'Atlantic Records',96),
+	('11/22/1969', 'US Billboard 200', 'Thank You','Led Zeppelin II', 'Atlantic Records',15),
+	('11/22/1969', 'US Billboard 200', 'Living Loving Maid','Led Zeppelin II', 'Atlantic Records',256),
+	('11/22/1969', 'Danish Albums Chart', 'Ramble On','Led Zeppelin II', 'Atlantic Records',487),
+	('12/07/1969', 'Danish Albums Chart', 'Bring It On Home','Led Zeppelin II', 'Atlantic Records',14),
+	    
+	('12/07/1969', 'Danish Albums Chart', 'Whole Lotta Love', 'Led Zeppelin II', 'Atlantic Records',15),
+	('12/07/1969', 'Danish Albums Chart', 'The Lemon Song', 'Led Zeppelin II', 'Atlantic Records',69),
+	('12/07/1969', 'Norwegian Albums Chart', 'Thank You','Led Zeppelin II', 'Atlantic Records',26),
+	('12/07/1969', 'Norwegian Albums Chart', 'Living Loving Maid','Led Zeppelin II', 'Atlantic Records',199),
+	('12/07/1969', 'Norwegian Albums Chart', 'Ramble On','Led Zeppelin II', 'Atlantic Records',25),
+	('12/07/1969', 'Norwegian Albums Chart', 'Bring It On Home','Led Zeppelin II', 'Atlantic Records',49),
+	-- PG
+	('04/24/1975', 'Danish Albums Chart', 'The Rover', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',1),
+	('04/24/1975', 'Danish Albums Chart', 'Kashmir', 'Physical Graffiti', 'Ronnie Lane Mobile Studio' ,2),
+	('04/24/1975', 'Danish Albums Chart', 'In the Light', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',3),
+	('04/24/1975', 'Norwegian Albums Chart', 'Ten Years Gone', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',4),
+	('04/24/1975', 'Norwegian Albums Chart', 'In My Time of Dying', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',5),
+
+	('06/02/1975', 'Norwegian Albums Chart', 'The Rover', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',24),
+	('06/02/1975', 'Norwegian Albums Chart', 'Kashmir', 'Physical Graffiti', 'Ronnie Lane Mobile Studio' ,13),
+	('06/02/1975', 'US Billboard 200', 'In the Light', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',79),
+	('06/02/1975', 'US Billboard 200', 'Ten Years Gone', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',233),
+	('06/02/1975', 'US Billboard 200', 'In My Time of Dying', 'Physical Graffiti', 'Ronnie Lane Mobile Studio',99);
+
+insert into Composed(song_title, name, role) values
+	-- Robert Plant
+	-- LZ
+    	('Good Times Bad Times', 'Robert Plant', 'Vovals'),
+	('Babe l''m Gonna Leave You', 'Robert Plant', 'Vovals'),
+	('You SHook Me', 'Robert Plant', 'Vovals'),
+	('Dazed and Confused', 'Robert Plant', 'Vovals'),
+	('heartbreaker', 'Robert Plant', 'Vovals'),
+	('white Summer', 'Robert Plant', 'Vovals'),
+	('Moby Dick', 'Robert Plant', 'Vovals'),
+	-- LZ II
+    	('Whole Lotta Love', 'Robert Plant', 'Vovals'),
+	('The Lemon Song', 'Robert Plant', 'Vovals'),
+	('Thank You', 'Robert Plant', 'Vovals'),
+	('Living Loving Maid', 'Robert Plant', 'Vovals'),
+	('Ramble On', 'Robert Plant', 'Vovals'),
+	('Bring It On Home', 'Robert Plant', 'Vovals'),
+	-- PG
+	('The Rover', 'Robert Plant', 'Vovals'),
+	('Kashmir', 'Robert Plant', 'Vovals'),
+	('In the Light', 'Robert Plant', 'Vovals'),
+	('Ten Years Gone', 'Robert Plant', 'Vovals'),
+	('In My Time of Dying', 'Robert Plant', 'Vovals'),
+	-- Jimmy Page
+	-- LZ
+    	('Good Times Bad Times', 'Jimmy Page', 'Guitar'),
+	('Babe l''m Gonna Leave You', 'Jimmy Page', 'Guitar'),
+	('You SHook Me', 'Jimmy Page', 'Guitar'),
+	('Dazed and Confused', 'Jimmy Page', 'Guitar'),
+	('heartbreaker', 'Jimmy Page', 'Guitar'),
+	('white Summer', 'Jimmy Page', 'Guitar'),
+	('Moby Dick', 'Jimmy Page', 'Guitar'),
+	-- LZ II
+    	('Whole Lotta Love', 'Jimmy Page', 'Guitar'),
+	('The Lemon Song', 'Jimmy Page', 'Guitar'),
+	('Thank You', 'Jimmy Page', 'Guitar'),
+	('Living Loving Maid', 'Jimmy Page', 'Guitar'),
+	('Ramble On', 'Jimmy Page', 'Guitar'),
+	('Bring It On Home', 'Jimmy Page', 'Guitar'),
+	-- PG
+	('The Rover', 'Jimmy Page', 'Guitar'),
+	('Kashmir', 'Jimmy Page', 'Guitar'),
+	('In the Light', 'Jimmy Page', 'Guitar'),
+	('Ten Years Gone', 'Jimmy Page', 'Guitar'),
+	('In My Time of Dying', 'Jimmy Page', 'Guitar'),
+	-- John Paul Jones
+	-- LZ
+    	('Good Times Bad Times', 'John Paul Jones', 'Keyboard'),
+	('Babe l''m Gonna Leave You', 'John Paul Jones', 'Keyboard'),
+	('You SHook Me', 'John Paul Jones', 'Keyboard'),
+	('Dazed and Confused', 'John Paul Jones', 'Keyboard'),
+	('heartbreaker', 'John Paul Jones', 'Keyboard'),
+	('white Summer', 'John Paul Jones', 'Keyboard'),
+	('Moby Dick', 'John Paul Jones', 'Keyboard'),
+	-- LZ II
+    	('Whole Lotta Love', 'John Paul Jones', 'Keyboard'),
+	('The Lemon Song', 'John Paul Jones', 'Keyboard'),
+	('Thank You', 'John Paul Jones', 'Keyboard'),
+	('Living Loving Maid', 'John Paul Jones', 'Keyboard'),
+	('Ramble On', 'John Paul Jones', 'Keyboard'),
+	('Bring It On Home', 'John Paul Jones', 'Keyboard'),
+	-- PG
+	('The Rover', 'John Paul Jones', 'Keyboard'),
+	('Kashmir', 'John Paul Jones', 'Keyboard'),
+	('In the Light', 'John Paul Jones', 'Keyboard'),
+	('Ten Years Gone', 'John Paul Jones', 'Keyboard'),
+	('In My Time of Dying', 'John Paul Jones', 'Keyboard'),
+	-- John Bonham
+	-- LZ
+    	('Good Times Bad Times', 'John Bonham', 'Drum'),
+	('Babe l''m Gonna Leave You', 'John Bonham', 'Drum'),
+	('You SHook Me', 'John Bonham', 'Drum'),
+	('Dazed and Confused', 'John Bonham', 'Drum'),
+	('heartbreaker', 'John Bonham', 'Drum'),
+	('white Summer', 'John Bonham', 'Drum'),
+	('Moby Dick', 'John Bonham', 'Drum'),
+	-- LZ II
+    	('Whole Lotta Love', 'John Bonham', 'Drum'),
+	('The Lemon Song', 'John Bonham', 'Drum'),
+	('Thank You', 'John Bonham', 'Drum'),
+	('Living Loving Maid', 'John Bonham', 'Drum'),
+	('Ramble On', 'John Bonham', 'Drum'),
+	('Bring It On Home', 'John Bonham', 'Drum'),
+	-- PG
+	('The Rover', 'John Bonham', 'Drum'),
+	('Kashmir', 'John Bonham', 'Drum'),
+	('In the Light', 'John Bonham', 'Drum'),
+	('Ten Years Gone', 'John Bonham', 'Drum'),
+	('In My Time of Dying', 'John Bonham', 'Drum');
+
+insert into Backed_by(song_title, album_title, record_company_title, name) values
+	-- LZ
+    	('Good Times Bad Times', 'Led Zeppelin', 'Atlantic Records', 'Led Zeppelin'),
+	('Babe l''m Gonna Leave You', 'Led Zeppelin', 'Atlantic Records', 'Led Zeppelin'),
+	('You SHook Me', 'Led Zeppelin', 'Atlantic Records', 'Led Zeppelin'),
+	('Dazed and Confused', 'Led Zeppelin', 'Atlantic Records', 'Led Zeppelin'),
+	('heartbreaker', 'Led Zeppelin', 'Atlantic Records', 'Led Zeppelin'),
+	('white Summer', 'Led Zeppelin', 'Atlantic Records', 'Led Zeppelin'),
+	('Moby Dick', 'Led Zeppelin', 'Atlantic Records', 'Led Zeppelin'),
+	-- LZ II
+    	('Whole Lotta Love', 'Led Zeppelin II', 'Atlantic Records', 'Led Zeppelin'),
+	('The Lemon Song', 'Led Zeppelin II', 'Atlantic Records', 'Led Zeppelin'),
+	('Thank You','Led Zeppelin II', 'Atlantic Records', 'Led Zeppelin'),
+	('Living Loving Maid','Led Zeppelin II', 'Atlantic Records', 'Led Zeppelin'),
+	('Ramble On','Led Zeppelin II', 'Atlantic Records', 'Led Zeppelin'),
+	('Bring It On Home','Led Zeppelin II', 'Atlantic Records', 'Led Zeppelin'),
+	-- PG
+	('The Rover', 'Physical Graffiti', 'Ronnie Lane Mobile Studio','Led Zeppelin'),
+	('Kashmir', 'Physical Graffiti', 'Ronnie Lane Mobile Studio' ,'Led Zeppelin'),
+	('In the Light', 'Physical Graffiti', 'Ronnie Lane Mobile Studio','Led Zeppelin'),
+	('Ten Years Gone', 'Physical Graffiti', 'Ronnie Lane Mobile Studio','Led Zeppelin'),
+	('In My Time of Dying', 'Physical Graffiti', 'Ronnie Lane Mobile Studio','Led Zeppelin');
+
+
+insert into Performs(song_title, album_title, record_company_title, name, instrument) values
+	-- Robert Plant
+	-- LZ
+    	('Good Times Bad Times', 'Led Zeppelin', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('Babe l''m Gonna Leave You', 'Led Zeppelin', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('You SHook Me', 'Led Zeppelin', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('Dazed and Confused', 'Led Zeppelin', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('heartbreaker', 'Led Zeppelin', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('white Summer', 'Led Zeppelin', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('Moby Dick', 'Led Zeppelin', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	-- LZ II
+    	('Whole Lotta Love', 'Led Zeppelin II', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('The Lemon Song', 'Led Zeppelin II', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('Thank You', 'Led Zeppelin II', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('Living Loving Maid', 'Led Zeppelin II', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('Ramble On', 'Led Zeppelin II', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	('Bring It On Home', 'Led Zeppelin II', 'Atlantic Records', 'Robert Plant', 'Vovals'),
+	-- PG
+	('The Rover', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'Robert Plant', 'Vovals'),
+	('Kashmir', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'Robert Plant', 'Vovals'),
+	('In the Light', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'Robert Plant', 'Vovals'),
+	('Ten Years Gone', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'Robert Plant', 'Vovals'),
+	('In My Time of Dying', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'Robert Plant', 'Vovals'),
+	-- Jimmy Page
+	-- LZ
+    	('Good Times Bad Times', 'Led Zeppelin', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('Babe l''m Gonna Leave You', 'Led Zeppelin', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('You SHook Me', 'Led Zeppelin', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('Dazed and Confused', 'Led Zeppelin', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('heartbreaker', 'Led Zeppelin', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('white Summer', 'Led Zeppelin', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('Moby Dick', 'Led Zeppelin', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	-- LZ II
+    	('Whole Lotta Love', 'Led Zeppelin II', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('The Lemon Song', 'Led Zeppelin II', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('Thank You', 'Led Zeppelin II', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('Living Loving Maid', 'Led Zeppelin II', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('Ramble On', 'Led Zeppelin II', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	('Bring It On Home', 'Led Zeppelin II', 'Atlantic Records', 'Jimmy Page', 'Guitar'),
+	-- PG
+	('The Rover', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'Jimmy Page', 'Guitar'),
+	('Kashmir', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'Jimmy Page', 'Guitar'),
+	('In the Light', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'Jimmy Page', 'Guitar'),
+	('Ten Years Gone', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'Jimmy Page', 'Guitar'),
+	('In My Time of Dying', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'Jimmy Page', 'Guitar'),
+	-- John Paul Jones
+	-- LZ
+    	('Good Times Bad Times', 'Led Zeppelin', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('Babe l''m Gonna Leave You', 'Led Zeppelin', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('You SHook Me', 'Led Zeppelin', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('Dazed and Confused', 'Led Zeppelin', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('heartbreaker', 'Led Zeppelin', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('white Summer', 'Led Zeppelin', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('Moby Dick', 'Led Zeppelin', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	-- LZ II
+    	('Whole Lotta Love', 'Led Zeppelin II', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('The Lemon Song', 'Led Zeppelin II', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('Thank You', 'Led Zeppelin II', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('Living Loving Maid', 'Led Zeppelin II', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('Ramble On', 'Led Zeppelin II', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	('Bring It On Home', 'Led Zeppelin II', 'Atlantic Records', 'John Paul Jones', 'Keyboard'),
+	-- PG
+	('The Rover', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'John Paul Jones', 'Keyboard'),
+	('Kashmir', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'John Paul Jones', 'Keyboard'),
+	('In the Light', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'John Paul Jones', 'Keyboard'),
+	('Ten Years Gone', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'John Paul Jones', 'Keyboard'),
+	('In My Time of Dying', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'John Paul Jones', 'Keyboard'),
+	-- John Bonham
+	-- LZ
+    	('Good Times Bad Times', 'Led Zeppelin', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('Babe l''m Gonna Leave You', 'Led Zeppelin', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('You SHook Me', 'Led Zeppelin', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('Dazed and Confused', 'Led Zeppelin', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('heartbreaker', 'Led Zeppelin', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('white Summer', 'Led Zeppelin', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('Moby Dick', 'Led Zeppelin', 'Atlantic Records', 'John Bonham', 'Drum'),
+	-- LZ II
+    	('Whole Lotta Love', 'Led Zeppelin II', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('The Lemon Song', 'Led Zeppelin II', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('Thank You', 'Led Zeppelin II', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('Living Loving Maid', 'Led Zeppelin II', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('Ramble On', 'Led Zeppelin II', 'Atlantic Records', 'John Bonham', 'Drum'),
+	('Bring It On Home', 'Led Zeppelin II', 'Atlantic Records', 'John Bonham', 'Drum'),
+	-- PG
+	('The Rover', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'John Bonham', 'Drum'),
+	('Kashmir', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'John Bonham', 'Drum'),
+	('In the Light', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'John Bonham', 'Drum'),
+	('Ten Years Gone', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'John Bonham', 'Drum'),
+	('In My Time of Dying', 'Physical Graffiti', 'Ronnie Lane Mobile Studio', 'John Bonham', 'Drum');

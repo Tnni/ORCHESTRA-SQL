@@ -1,0 +1,167 @@
+--EECS 3421 N   PROJECT II  ZEPPELIN SCHEMA.SQL
+--NAME: CHENGXIANG GONG
+--EECS ID:q5787882
+--STUDENT NUMBER: 214321616
+
+--Entities
+create table Record_company(
+	title varchar(30) not null,
+	address varchar(30),
+	telephone integer,
+	homepage varchar(30),
+
+	CONSTRAINT Record_company_PK
+		primary key (title)
+);
+
+create table Album(
+	title varchar(30) not null,
+	title_record_company varchar(30) not null,
+	year integer,
+
+	CONSTRAINT Album_PK
+		primary key (title, title_record_company),
+	CONSTRAINT Album_produced_record_company_FK
+		foreign key (title_record_company) REFERENCES Record_company(title)
+);
+
+create table Song( 
+	title varchar(30) not null,
+	genre varchar(30),
+
+	CONSTRAINT Song_PK
+		primary key (title)
+);
+
+create table Musician(
+	name varchar(30) not null,
+	hometown varchar(30) not null,
+
+	CONSTRAINT Musician_PK
+		primary key (name)
+);
+
+create table Artist(
+	bio varchar(80),
+	homepage varchar(30),
+	name varchar(30) not null,
+	hometown varchar(30),
+
+	CONSTRAINT Artist_PK
+		primary key (name),
+	CONSTRAINT Artist_isa_Musician_FK
+		foreign key (name) REFERENCES Musician
+);
+
+--"Composed" is in Relation section
+
+create table Recording(
+	song_title varchar(30) not null,
+	album_title varchar(30) not null,
+	record_company_title varchar(30) not null,
+	number integer not null,
+	studio varchar(30),
+
+	CONSTRAINT Recording_PK
+		primary key (song_title, album_title, record_company_title),
+	CONSTRAINT Recording_of_song_FK
+		foreign key (song_title) REFERENCES Song(title), 
+	CONSTRAINT Recording_on_album_FK
+		foreign key (album_title, record_company_title) REFERENCES Album(title, title_record_company)
+);
+
+create table Orchestra(
+	name varchar(30) not null,
+	address varchar(30),
+	size integer,
+	conductor varchar(30),
+
+	CONSTRAINT Orchestra_PK
+		primary key (name)
+);
+
+--"Backed by" is in Relation section
+
+create table Instrument(
+	instrument varchar(30) not null,
+
+	CONSTRAINT Instrument_PK
+		primary key (instrument)
+);
+
+--"Performs" is in Relation section
+
+create table Chart(
+	name varchar(30) not null,
+
+	CONSTRAINT Chart_PK
+		primary key (name)
+);
+
+create table Week(
+	start_day date not null,
+
+	CONSTRAINT Week_PK
+		primary key (start_day)
+);
+
+-- Relations
+create table Charts(
+	start_day date not null,
+	name varchar(30) not null,
+	song_title varchar(30) not null,
+	album_title varchar(30) not null,
+	record_company_title varchar(30) not null,
+	rank integer not null,
+	CONSTRAINT Charts_PK
+		primary key (start_day, name, song_title, album_title, record_company_title),
+	CONSTRAINT Charts_of_week_FK
+		foreign key (start_day) REFERENCES Week,
+	CONSTRAINT Charts_to_chart_FK
+		foreign key (name) REFERENCES Chart,
+	CONSTRAINT Charts_from_recording_FK
+		foreign key (song_title, album_title, record_company_title) REFERENCES Recording
+);
+
+create table Composed(
+	song_title varchar(30) not null,
+	name varchar(30) not null,
+	role varchar(30) not null,
+	
+	CONSTRAINT Composed_PK
+		primary key (song_title, name),
+	CONSTRAINT Composed_song_FK
+		foreign key (song_title) REFERENCES Song(title),
+	CONSTRAINT Composed_artist_FK
+		foreign key (name) REFERENCES Artist(name)
+);
+
+create table Backed_by(
+	song_title varchar(30) not null,
+	album_title varchar(30) not null,
+	record_company_title varchar(30) not null,
+	name varchar(30),
+	CONSTRAINT Backed_by_PK
+		primary key (song_title, album_title, record_company_title),
+	CONSTRAINT Backed_by_recording_FK
+		foreign key (song_title, album_title, record_company_title) REFERENCES Recording,
+	CONSTRAINT Backed_by_orchestra_FK
+		foreign key (name) REFERENCES Orchestra
+);
+
+create table Performs(
+	name varchar(30) not null,
+	instrument varchar(30)not null,
+	song_title varchar(30) not null,
+	album_title varchar(30) not null,
+	record_company_title varchar(30) not null,
+
+	CONSTRAINT Performs_PK
+		primary key (song_title, album_title, record_company_title, name, instrument),
+	CONSTRAINT Performs_instrument_FK
+		foreign key (instrument) REFERENCES Instrument,
+	CONSTRAINT Performs_recording_FK
+		foreign key (song_title, album_title, record_company_title) REFERENCES Recording,
+	CONSTRAINT Performs_musician_FK
+		foreign key (name) REFERENCES Musician
+)

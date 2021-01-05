@@ -1,0 +1,15 @@
+--List all songs that ranked in top 100 of any chart 
+--together with the orchestra that accompanied the band
+
+select 
+	C.song_title as Song, 
+	C.name as Chart,
+	C.rank as Rank, 
+	B.name as Orchestra
+from	
+	Charts C, Backed_by B
+where
+	C.song_title = B.song_title
+	and
+	C.rank <= 100
+order by C.rank;

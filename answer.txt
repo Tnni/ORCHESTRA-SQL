@@ -1,0 +1,38 @@
+
+select C.song_title as Song, C.name as Chart, C.rank as Rank, B.name as Orchestra from Charts C, Backed_by B where C.song_title = B.song_title and C.rank <= 100 order by C.rank
+
+SONG                           CHART                          RANK        ORCHESTRA                     
+------------------------------ ------------------------------ ----------- ------------------------------
+The Rover                      Danish Albums Chart                      1 Led Zeppelin                  
+Kashmir                        Danish Albums Chart                      2 Led Zeppelin                  
+In the Light                   Danish Albums Chart                      3 Led Zeppelin                  
+Ten Years Gone                 Norwegian Albums Chart                   4 Led Zeppelin                  
+In My Time of Dying            Norwegian Albums Chart                   5 Led Zeppelin                  
+Kashmir                        Norwegian Albums Chart                  13 Led Zeppelin                  
+Bring It On Home               Danish Albums Chart                     14 Led Zeppelin                  
+Thank You                      US Billboard 200                        15 Led Zeppelin                  
+Whole Lotta Love               Danish Albums Chart                     15 Led Zeppelin                  
+Dazed and Confused             Norwegian Albums Chart                  24 Led Zeppelin                  
+Moby Dick                      Norwegian Albums Chart                  24 Led Zeppelin                  
+The Rover                      Norwegian Albums Chart                  24 Led Zeppelin                  
+Ramble On                      Norwegian Albums Chart                  25 Led Zeppelin                  
+white Summer                   Norwegian Albums Chart                  26 Led Zeppelin                  
+Thank You                      Norwegian Albums Chart                  26 Led Zeppelin                  
+Good Times Bad Times           US Billboard 200                        28 Led Zeppelin                  
+Babe l'm Gonna Leave You       US Billboard 200                        34 Led Zeppelin                  
+Good Times Bad Times           Danish Albums Chart                     36 Led Zeppelin                  
+Dazed and Confused             US Billboard 200                        46 Led Zeppelin                  
+Whole Lotta Love               US Billboard 200                        48 Led Zeppelin                  
+Bring It On Home               Norwegian Albums Chart                  49 Led Zeppelin                  
+heartbreaker                   US Billboard 200                        59 Led Zeppelin                  
+The Lemon Song                 Danish Albums Chart                     69 Led Zeppelin                  
+heartbreaker                   Norwegian Albums Chart                  70 Led Zeppelin                  
+Babe l'm Gonna Leave You       Danish Albums Chart                     78 Led Zeppelin                  
+In the Light                   US Billboard 200                        79 Led Zeppelin                  
+You SHook Me                   US Billboard 200                        80 Led Zeppelin                  
+The Lemon Song                 US Billboard 200                        96 Led Zeppelin                  
+In My Time of Dying            US Billboard 200                        99 Led Zeppelin                  
+
+  29 record(s) selected.
+
+
